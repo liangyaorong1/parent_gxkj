@@ -3,3 +3,4 @@ jwt:
     key: saas-ihrm
     ttl: 360000
       tt3: 5555
+      tt4: 888
