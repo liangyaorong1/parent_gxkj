@@ -1,0 +1,9 @@
+#eureka服务的配置文件
+server:
+  port: 6868 #服务端口
+eureka:
+  client:
+    register-with-eureka: false #是否将自己注册到eureka服务中，本身就是，所以无需注册
+    fetch-registry: false #是否从Eureka中获取注册信息
+    service-url:
+      defaultZone: http://127.0.0.1:${server.port}/eureka/

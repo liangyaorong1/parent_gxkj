@@ -1,0 +1,88 @@
+
+server:
+  port: 9090
+spring:
+  application:
+    name: ihrm-gate #指定服务名
+
+#注册到eureka的服务地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+zuul:
+  host:
+    connect-timeout-millis: 300000
+    socket-timeout-millis: 300000
+  routes:
+    ihrm-company: #这里是路由id，随意写
+      path: /company/** #需要映射的路径地址
+      #url : http://127.0.0.1:9001 #映射路径对应的实践微服务的路径
+      serviceId: ihrm-company
+      #zuul自动的会删除请求的前缀 http://127.0.0:9001/company
+      stripPrefix: false #不删除请求前缀
+      sentiviteHeaders:  #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-employee: #这里是路由id，随意写
+      path: /employees/** #需要映射的路径地址
+      #url : http://127.0.0.1:9001 #映射路径对应的实践微服务的路径
+      serviceId: ihrm-employee
+      stripPrefix: false #不删除请求前缀
+      sentiviteHeaders:  #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-system: #这里是路由id，随意写
+      path: /sys/** #需要映射的路径地址
+      #url : http://127.0.0.1:9001 #映射路径对应的实践微服务的路径
+      serviceId: ihrm-system
+      stripPrefix: false #不删除请求前缀
+      sentiviteHeaders: #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-social: #这里是路由id，随意写
+      path: /social_securitys/** #需要映射的路径地址
+      serviceId: ihrm-social
+      stripPrefix: false #不删除请求前缀
+      sentiviteHeaders: #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-attendance: #这里是路由id，随意写
+      path: /attendances/** #需要映射的路径地址
+      serviceId: ihrm-attendance
+      stripPrefix: false #不删除请求前缀
+      sentiviteHeaders: #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-atte-archive: #这里是路由id，随意写
+      path: /archive/** #需要映射的路径地址
+      serviceId: ihrm-attendance
+      stripPrefix: false #不删除请求前缀
+      sentiviteHeaders: #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-atte-cfg: #这里是路由id，随意写
+      path: /cfg/** #需要映射的路径地址
+      serviceId: ihrm-attendance
+      stripPrefix: false #不删除请求前缀
+      sentiviteHeaders: #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-atte-report: #这里是路由id，随意写
+      path: /report/** #需要映射的路径地址
+      serviceId: ihrm-attendance
+      stripPrefix: false #不删除请求前缀
+      sentiviteHeaders: #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-salary: #这里是路由id，随意写
+      path: /salarys/** #需要映射的路径地址
+      serviceId: ihrm-salary
+      stripPrefix: false #不删除请求前缀
+      sentiviteHeaders: #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-audit: #这里是路由id，随意写
+      path: /user/process/** #需要映射的路径地址
+      serviceId: ihrm-audit
+      stripPrefix: false #不删除请求前缀
+      sentiviteHeaders: #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
