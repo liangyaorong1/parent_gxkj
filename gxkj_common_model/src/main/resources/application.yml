@@ -1,7 +1,4 @@
 jwt:
  config:
-      value: 5555
     key: saas-ihrm
     ttl: 360000
-      tt3: 5555
-      tt4: 888
